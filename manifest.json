@@ -4,7 +4,7 @@
   "version": "0.2.0",
 
   "description": "Easily convert time stamps form epoch to ISO 8601 format. Supports input in seconds, milliseconds and nanoseconds.",
-  "homepage_url": "https://github.com/zodiac403/epoch-time-converter".
+  "homepage_url": "https://github.com/zodiac403/epoch-time-converter",
   "author": "zodiac403 <zodiac403@gmx.de>",
 
   "browser_action": {
