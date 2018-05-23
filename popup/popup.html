@@ -1,0 +1,52 @@
+<!-- Copyright zodiac403@gmx.de
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+    <div class="title">Epoch Time Converter</div>
+
+    <div class="section">
+        <label>Time in epoch format</label>
+        <input type="text" id="input" placeholder="1234567890">
+    </div>
+
+    <div id="result" class="hidden">
+        <div class="section">
+            <label>
+                Result from
+                <span id="input-unit"></span>                
+            </label>
+            
+            <div>
+                <span>UTC</span>
+                <span id="result-iso" class="result-value"></span>
+            </div>
+            <div>
+                <span>Epoch (ms)</span>
+                <span id="result-epoch" class="result-value"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="error" class="hidden">
+        <div class="section">
+                <label>Result</label>
+                <div id="error-text" />        
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+
+</body>
+
+</html>

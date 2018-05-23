@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "epoch-time-converter",
+  "version": "0.1.0",
+  "browser_action": {
+    "default_icon": "icon/icon-32.png",
+    "default_title": "Epoch time converter",
+    "default_popup": "popup/popup.html"
+  }
+}

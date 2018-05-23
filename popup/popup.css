@@ -1,0 +1,36 @@
+/* Copyright zodiac403@gmx.de
+** This Source Code Form is subject to the terms of the Mozilla Public
+** License, v. 2.0. If a copy of the MPL was not distributed with this
+** file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+html,
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 5px;
+}
+
+.title {
+  font-size: 1.25em;
+}
+
+.hidden {
+  display: none;
+}
+
+div.section {
+  margin-top: 1em;
+}
+
+label {
+  font-size: .75em;
+  color: rgba(0,0,0,.54);
+  width: 80%;
+}
+
+input {
+  width: 80%;
+}
+
+.result-value {
+  font-weight: 600;
+}
