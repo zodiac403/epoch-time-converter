@@ -32,16 +32,24 @@ function getInputDefinition(value) {
         };
     }
 
+    function isEpoch(value) {
+        return value.match(/^[0-9]+$/);
+    }
+
     let input = {};
 
-    if (value.length === 19 && value.match(/[0-9]{19}/)) {
-        input = createInputDefinition(Number(value) / 1000000, 'ns', 'epoch');
-    } else if (value.length === 13 && value.match(/[0-9]{13}/)) {
-        input = createInputDefinition(Number(value), 'ms', 'epoch');
-    } else if (value.length === 10 && value.match(/[0-9]{10}/)) {
-        input = createInputDefinition(Number(value) * 1000, 's', 'epoch');
+    if (isEpoch(value)) {
+        if (value.length <= 11) {
+            input = createInputDefinition(Number(value) * 1000, 's', 'epoch');
+        } else if (value.length <= 14) {
+            input = createInputDefinition(Number(value), 'ms', 'epoch');
+        } else if (value.length <= 21) {
+            input = createInputDefinition(Number(value) / 1000000, 'ns', 'epoch');
+        } else {
+            throw Error('Unknown format: number with ' + value.length + ' digits.');
+        }
     } else {
-        throw Error('Unknown format: number with ' + value.length + ' digits.');
+        throw Error('Unknown format: ' + value + '.');
     }
 
     return input;
@@ -53,10 +61,10 @@ function convert(value) {
     let date = new Date(Number(value));
 
     if (!date.getTime()) {
-        throw Error('Cannot parse to Date.');        
+        throw Error('Cannot parse to Date.');
     }
 
-    result = date.toISOString();        
+    result = date.toISOString();
     return result;
 }
 
