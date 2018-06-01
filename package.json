@@ -1,0 +1,25 @@
+{
+  "name": "epoch-time-converter",
+  "version": "0.4.0",
+  "description": "NPM package for build chain.",
+  "main": "popup/popup.html",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zodiac403/epoch-time-converter.git"
+  },
+  "author": "zodiac403",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/zodiac403/epoch-time-converter/issues"
+  },
+  "homepage": "https://github.com/zodiac403/epoch-time-converter#readme",
+  "devDependencies": {
+    "prettier": "^1.13.3"
+  }
+}
