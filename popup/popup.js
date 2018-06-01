@@ -12,13 +12,13 @@ function handleInputEvent(event) {
 
     document.getElementById('result').className = '';
     document.getElementById('error').className = 'hidden';
-    document.getElementById('input-unit').innerHTML = inputDefinition.unit;
-    document.getElementById('result-iso').innerHTML = result;
-    document.getElementById('result-epoch').innerHTML = inputDefinition.epoch;
+    document.getElementById('input-unit').textContent = inputDefinition.unit;
+    document.getElementById('result-iso').textContent = result;
+    document.getElementById('result-epoch').textContent = inputDefinition.epoch;
   } catch (error) {
     document.getElementById('result').className = 'hidden';
     document.getElementById('error').className = '';
-    document.getElementById('error-text').innerHTML = error;
+    document.getElementById('error-text').textContent = error;
   }
 }
 
