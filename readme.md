@@ -13,3 +13,13 @@ Input in seconds        1514769825
 Input in milliseconds   1514769825789
 Input in nanoseconds    1514769825789000000
 ```
+
+## Deploy on Mozilla
+
+Create ZIP archive from local repository.
+
+```
+npm run zip
+```
+
+Upload archive to https://addons.mozilla.org/.
