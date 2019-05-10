@@ -1,0 +1,39 @@
+<!-- Copyright zodiac403@gmx.de
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+    <div class="title">Epoch Time Converter</div>
+
+
+    <div class="tab">
+        <button class="tab-links" onclick="openTab(event, 'Epoch2Rfc')">Epoch2Rfc</button>
+        <button class="tab-links" onclick="openTab(event, 'Rfc2Epoch')">Rfc2Epoch</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="Epoch2Rfc" class="tab-content">
+        <h3>London</h3>
+        <p>London is the capital city of England.</p>
+    </div>
+
+    <div id="Rfc2Epoch" class="tab-content">
+        <h3>Paris</h3>
+        <p>Paris is the capital of France.</p>
+    </div>
+
+    <script src="popup.js"></script>
+
+</body>
+
+</html>
