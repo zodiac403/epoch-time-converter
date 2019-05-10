@@ -1,4 +1,27 @@
  /**
+  ** page
+  **/
+
+ html,
+ body {
+   font-family: Helvetica, Arial, sans-serif;
+   margin: 5px;
+ }
+
+ .title {
+   font-size: 1.25em;
+ }
+
+ .hide {
+   display: none;
+ }
+
+ .show {
+  display: block;
+}
+
+
+ /**
   ** tab
   **/
 
@@ -32,16 +55,7 @@
 
  /* Style the tab content */
  .tab-content {
-   display: none;
    padding: 6px 12px;
    border: 1px solid #ccc;
    border-top: none;
- }
-
- .tab-content-hide {
-  display: none;
- }
-
- .tab-content-show {
-  display: block;
  }
