@@ -37,3 +37,11 @@
    border: 1px solid #ccc;
    border-top: none;
  }
+
+ .tab-content-hide {
+  display: none;
+ }
+
+ .tab-content-show {
+  display: block;
+ }

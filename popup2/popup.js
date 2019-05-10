@@ -2,11 +2,11 @@
 // tab navigation
 //
 
-function openTab(event, targetName) {
+function updateTabView(tabElement, targetName) {
   // hide all elements with class='tab-content'
   var tabContent = document.getElementsByClassName('tab-content');
   for (var i = 0; i < tabContent.length; i++) {
-    tabContent[i].style.display = 'none'; // todo: add hide class
+    tabContent[i].className = tabContent[i].className.replace(' tab-content-show', ' tab-content-hide');
   }
 
   // remove the class 'active' from all elements with class='tab-links' and 
@@ -16,9 +16,20 @@ function openTab(event, targetName) {
   }
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
-  document.getElementById(targetName).style.display = 'block';
-  event.currentTarget.className += ' active';
+  document.getElementById(targetName).className = document.getElementById(targetName).className.replace(' tab-content-hide', ' tab-content-show')
+  tabElement.className += ' active';
 }
 
-document.getElementsByClassName('tab-links')[0].className += ' active';
-document.getElementById('Epoch2Rfc').style.display = 'block';
+function openTab(event, targetName) {
+  return updateTabView(event.currentTarget, targetName);
+}
+
+function openFirstTab() {
+  return updateTabView(document.getElementsByClassName('tab-links')[0], 'Epoch2Rfc');
+}
+
+//
+// initialization
+//
+
+openFirstTab();
