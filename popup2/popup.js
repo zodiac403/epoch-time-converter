@@ -14,21 +14,21 @@ const initialElementId = {
 
 function updateTabView(tabElement, targetName) {
   // hide all elements with class='tab-content'
-  var tabContent = document.getElementsByClassName('tab-content');
-  for (var i = 0; i < tabContent.length; i++) {
+  let tabContent = document.getElementsByClassName('tab-content');
+  for (let i = 0; i < tabContent.length; i++) {
     if(tabContent[i].className.indexOf('hide') === -1) {
       tabContent[i].className += ' hide';
     }
   }
 
   // remove the class 'active' from all elements with class='tab-links' and 
-  var tabLinks = document.getElementsByClassName('tab-links');
-  for (i = 0; i < tabLinks.length; i++) {
-    tabLinks[i].className = tabLinks[i].className.replace(' active', '');
+  let tabLinks = document.getElementsByClassName('tab-links');
+  for (let j = 0; j < tabLinks.length; j++) {
+    tabLinks[j].className = tabLinks[j].className.replace(' active', '');
   }
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
-  var tabContentElement = document.getElementById(targetName + '-tab-content');
+  let tabContentElement = document.getElementById(targetName + '-tab-content');
   tabContentElement.className = tabContentElement.className.replace(' hide', '')
   tabElement.className += ' active';
 
@@ -51,8 +51,7 @@ function evaluateEpochToIso() {
   try {
     let value = document.getElementById('epoch-input').value;
     let inputDefinition = getInputDefinition(value);
-
-    result = convert(inputDefinition.epoch);
+    let result = convert(inputDefinition.epoch);
 
     document.getElementById('epoch-result').className = '';
     document.getElementById('epoch-error').className = 'hide';
@@ -100,7 +99,6 @@ function getInputDefinition(value) {
 
 function convert(value) {
   let result;
-
   let date = new Date(Number(value));
 
   if (!date.getTime()) {
@@ -117,15 +115,13 @@ function convert(value) {
 
 function evaluateIsoToEpoch() {
   try {
-    let year = document.getElementById('iso-year').value || 0;
+    let year = document.getElementById('iso-year').value || 1970;
     let month = document.getElementById('iso-month').value || 1;
     let day = document.getElementById('iso-day').value || 1;
     let hour = document.getElementById('iso-hour').value || 0;
     let minute = document.getElementById('iso-minute').value || 0;
     let second = document.getElementById('iso-second').value || 0;
     let milliseconds = document.getElementById('iso-millisecond').value || 0;
-
-    console.log(year, month, day, hour, minute, second);
 
     let value = new Date();
     value.setUTCFullYear(year);
@@ -136,8 +132,6 @@ function evaluateIsoToEpoch() {
     document.getElementById('iso-error').className = 'hide';
     document.getElementById('iso-result-iso').textContent = value.toISOString();
     document.getElementById('iso-result-epoch').textContent = value.getTime();
-
-
   } catch (error) {
     document.getElementById('iso-result').className = 'hide';
     document.getElementById('iso-error').className = 'show';
@@ -149,8 +143,8 @@ function initializeIsoFields() {
   function setValue(id, value) {
     document.getElementById(id).value = value;
   }
-  let date = new Date();
 
+  let date = new Date();
   setValue('iso-year', date.getUTCFullYear());
   setValue('iso-month', date.getUTCMonth() + 1);
   setValue('iso-day', date.getUTCDate());
