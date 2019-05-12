@@ -8,8 +8,8 @@
 //
 
 const initialElementId = {
-  'e2r': 'epoch-input',
-  'rfc': 'rfc-year'
+  'epoch': 'epoch-input',
+  'iso': 'iso-year'
 };
 
 function updateTabView(tabElement, targetName) {
@@ -40,14 +40,14 @@ function openTab(event, targetName) {
 }
 
 function openFirstTab() {
-  return updateTabView(document.getElementsByClassName('tab-links')[1], 'rfc');
+  return updateTabView(document.getElementsByClassName('tab-links')[1], 'iso');
 }
 
 //
 // epoch
 //
 
-function evaluateEpochToRfc() {
+function evaluateEpochToIso() {
   try {
     let value = document.getElementById('epoch-input').value;
     let inputDefinition = getInputDefinition(value);
@@ -115,15 +115,15 @@ function convert(value) {
 // iso
 //
 
-function evaluateRfcToEpoch() {
+function evaluateIsoToEpoch() {
   try {
-    let year = document.getElementById('rfc-year').value || 0;
-    let month = document.getElementById('rfc-month').value || 1;
-    let day = document.getElementById('rfc-day').value || 1;
-    let hour = document.getElementById('rfc-hour').value || 0;
-    let minute = document.getElementById('rfc-minute').value || 0;
-    let second = document.getElementById('rfc-second').value || 0;
-    let milliseconds = document.getElementById('rfc-millisecond').value || 0;
+    let year = document.getElementById('iso-year').value || 0;
+    let month = document.getElementById('iso-month').value || 1;
+    let day = document.getElementById('iso-day').value || 1;
+    let hour = document.getElementById('iso-hour').value || 0;
+    let minute = document.getElementById('iso-minute').value || 0;
+    let second = document.getElementById('iso-second').value || 0;
+    let milliseconds = document.getElementById('iso-millisecond').value || 0;
 
     console.log(year, month, day, hour, minute, second);
 
@@ -151,13 +151,13 @@ function initializeIsoFields() {
   }
   let date = new Date();
 
-  setValue('rfc-year', date.getUTCFullYear());
-  setValue('rfc-month', date.getUTCMonth() + 1);
-  setValue('rfc-day', date.getUTCDate());
-  setValue('rfc-hour', date.getUTCHours());
-  setValue('rfc-minute', date.getUTCMinutes());
-  setValue('rfc-second', 0);
-  setValue('rfc-millisecond', 0);
+  setValue('iso-year', date.getUTCFullYear());
+  setValue('iso-month', date.getUTCMonth() + 1);
+  setValue('iso-day', date.getUTCDate());
+  setValue('iso-hour', date.getUTCHours());
+  setValue('iso-minute', date.getUTCMinutes());
+  setValue('iso-second', 0);
+  setValue('iso-millisecond', 0);
 
 }
 
@@ -169,10 +169,10 @@ function handleInputEvent(event) {
   let eventId = event.currentTarget.activeElement.id;
 
   if (eventId.indexOf('epoch') !== -1) {
-    evaluateEpochToRfc();
+    evaluateEpochToIso();
   }
-  else if (eventId.indexOf('rfc') !== -1) {
-    evaluateRfcToEpoch();
+  else if (eventId.indexOf('iso') !== -1) {
+    evaluateIsoToEpoch();
   }
   else {
     // ignore

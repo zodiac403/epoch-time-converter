@@ -17,12 +17,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
 
     <div class="tab">
-        <button class="tab-links" onclick="openTab(event, 'e2r')">Epoch2Rfc</button>
-        <button class="tab-links" onclick="openTab(event, 'rfc')">Rfc2Epoch</button>
+        <button class="tab-links" onclick="openTab(event, 'epoch')">Epoch2Rfc</button>
+        <button class="tab-links" onclick="openTab(event, 'iso')">Rfc2Epoch</button>
     </div>
 
     <!-- Tab content -->
-    <div id="e2r-tab-content" class="tab-content">
+    <div id="epoch-tab-content" class="tab-content">
         <div class="section">
             <label>Time in Unix epoch format</label>
             <input type="text" id="epoch-input" placeholder="1234567890">
@@ -55,23 +55,23 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
     
     </div>
 
-    <div id="rfc-tab-content" class="tab-content">
+    <div id="iso-tab-content" class="tab-content">
         <div class="section">
             <label>Time in RFC3339</label>
             <div class="iso-input-section">
-                <input type="number" id="rfc-year" class="digit-4" placeholder="yyyy">
+                <input type="number" id="iso-year" class="digit-4" placeholder="yyyy">
                 <span>-</span>
-                <input type="number" id="rfc-month" class="digit-2" placeholder="mm">
+                <input type="number" id="iso-month" class="digit-2" placeholder="mm">
                 <span>-</span>
-                <input type="number" id="rfc-day" class="digit-2" placeholder="dd">
+                <input type="number" id="iso-day" class="digit-2" placeholder="dd">
                 <span>T</span>
-                <input type="number" id="rfc-hour" class="digit-2" placeholder="hh">
+                <input type="number" id="iso-hour" class="digit-2" placeholder="hh">
                 <span>:</span>
-                <input type="number" id="rfc-minute" class="digit-2" placeholder="mm">
+                <input type="number" id="iso-minute" class="digit-2" placeholder="mm">
                 <span>:</span>
-                <input type="number" id="rfc-second" class="digit-2" placeholder="ss">
+                <input type="number" id="iso-second" class="digit-2" placeholder="ss">
                 <span>.</span>
-                <input type="number" id="rfc-millisecond" class="digit-4" placeholder="fff">
+                <input type="number" id="iso-millisecond" class="digit-4" placeholder="fff">
                 <span>Z</span>
             </div>
         </div>
