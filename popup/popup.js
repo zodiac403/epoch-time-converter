@@ -8,11 +8,11 @@
 //
 
 const initialElementId = {
-  'epoch': 'epoch-input',
-  'iso': 'iso-year'
+  'tab-content-epoch': 'epoch-input',
+  'tab-content-iso': 'iso-year'
 };
 
-function updateTabView(tabElement, targetName) {
+function updateTabView(tabElement) {
   // hide all elements with class='tab-content'
   let tabContent = document.getElementsByClassName('tab-content');
   for (let i = 0; i < tabContent.length; i++) {
@@ -28,20 +28,15 @@ function updateTabView(tabElement, targetName) {
   }
 
   // Show the current tab, and add an 'active' class to the button that opened the tab
-  let tabContentElement = document.getElementById(targetName + '-tab-content');
+  let tabContentElement = document.getElementById(tabElement.dataset.target);
   tabContentElement.className = tabContentElement.className.replace(' hide', '')
   tabElement.className += ' active';
 
-  document.getElementById(initialElementId[targetName]).focus();
-}
-
-function openTab(event, targetName) {
-  console.log('open', targetName);
-  return updateTabView(event.currentTarget, targetName);
+  document.getElementById(initialElementId[tabElement.dataset.target]).focus();
 }
 
 function openFirstTab() {
-  return updateTabView(document.getElementsByClassName('tab-links')[0], 'epoch');
+  return updateTabView(document.getElementsByClassName('tab-links')[0]);
 }
 
 //
@@ -122,7 +117,7 @@ function evaluateIsoToEpoch() {
     let hour = document.getElementById('iso-hour').value || 0;
     let minute = document.getElementById('iso-minute').value || 0;
     let second = document.getElementById('iso-second').value || 0;
-    let milliseconds = document.getElementById('iso-millisecond').value || 0;
+    let milliseconds = 0;
 
     let value = new Date();
     value.setUTCFullYear(year);
@@ -152,8 +147,6 @@ function initializeIsoFields() {
   setValue('iso-hour', date.getUTCHours());
   setValue('iso-minute', date.getUTCMinutes());
   setValue('iso-second', 0);
-  setValue('iso-millisecond', 0);
-
 }
 
 //
@@ -173,12 +166,10 @@ function handleInputEvent(event) {
 }
 
 document.addEventListener('input', handleInputEvent);
-document.getElementById("tab-link-epoch").addEventListener("click", function (event) {
-  openTab(event, 'epoch');
+['epoch', 'iso'].forEach(function(key) {
+  document.getElementById('tab-link-' + key).addEventListener('click', function (event) {
+    updateTabView(event.currentTarget);
+  });  
 });
-document.getElementById("tab-link-iso").addEventListener("click", function (event) {
-  openTab(event, 'iso');
-});
-
 openFirstTab();
 initializeIsoFields();

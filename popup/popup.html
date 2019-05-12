@@ -17,12 +17,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
 
     <div class="tab">
-        <button class="tab-links" id="tab-link-epoch">Epoch2Rfc</button>
-        <button class="tab-links" id="tab-link-iso">Rfc2Epoch</button>
+        <button class="tab-links" id="tab-link-epoch" data-target="tab-content-epoch">Epoch2Rfc</button>
+        <button class="tab-links" id="tab-link-iso" data-target="tab-content-iso">Rfc2Epoch</button>
     </div>
 
     <!-- Tab content -->
-    <div id="epoch-tab-content" class="tab-content">
+    <div id="tab-content-epoch" class="tab-content">
         <div class="section">
             <label>Time in Unix epoch format</label>
             <input type="text" id="epoch-input" placeholder="1234567890">
@@ -55,7 +55,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
     
     </div>
 
-    <div id="iso-tab-content" class="tab-content">
+    <div id="tab-content-iso" class="tab-content">
         <div class="section">
             <label>Time in RFC3339</label>
             <div class="iso-input-section">
@@ -70,8 +70,6 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
                 <input type="number" id="iso-minute" class="digit-2" placeholder="mm">
                 <span>:</span>
                 <input type="number" id="iso-second" class="digit-2" placeholder="ss">
-                <span>.</span>
-                <input type="number" id="iso-millisecond" class="digit-4" placeholder="fff">
                 <span>Z</span>
             </div>
         </div>
