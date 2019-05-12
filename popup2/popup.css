@@ -10,6 +10,7 @@
 
  .title {
    font-size: 1.25em;
+   margin-bottom: 0.25em;
  }
 
  .hide {
@@ -39,7 +40,7 @@
    border: none;
    outline: none;
    cursor: pointer;
-   padding: 14px 16px;
+   padding: 0.8em 1.4em;
    transition: 0.3s;
  }
 
@@ -59,3 +60,26 @@
    border: 1px solid #ccc;
    border-top: none;
  }
+
+  /**
+  ** epoch2rfc
+  **/
+
+  div.section {
+    margin-top: 1em;
+  }
+  
+  label {
+    font-size: .75em;
+    color: rgba(0,0,0,.54);
+    width: 80%;
+  }
+  
+  input {
+    width: 80%;
+  }
+  
+  .result-value {
+    font-weight: 600;
+  }
+  
