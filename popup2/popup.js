@@ -118,30 +118,49 @@ function convert(value) {
 function evaluateRfcToEpoch() {
   try {
     let year = document.getElementById('rfc-year').value || 0;
-    let month = document.getElementById('rfc-month').value || 0;
-    let day = document.getElementById('rfc-day').value || 0;
+    let month = document.getElementById('rfc-month').value || 1;
+    let day = document.getElementById('rfc-day').value || 1;
+    let hour = document.getElementById('rfc-hour').value || 0;
+    let minute = document.getElementById('rfc-minute').value || 0;
+    let second = document.getElementById('rfc-second').value || 0;
+    let milliseconds = document.getElementById('rfc-millisecond').value || 0;
 
-    let isoString = year + '-' + month + '-' + day 
+    console.log(year, month, day, hour, minute, second);
 
-    let value = new Date(year + '-' + month + '-' + day);
+    let value = new Date();
+    value.setUTCFullYear(year);
+    value.setMonth(month - 1, day);
+    value.setUTCHours(hour, minute, second, milliseconds);
 
-    document.getElementById('result-epoch').textContent = value.valueOf();
-
-    document.getElementById('result').className = '';
+    document.getElementById('result').className = 'show';
     document.getElementById('error').className = 'hide';
     document.getElementById('input-unit').textContent = 'ISO';
     document.getElementById('result-iso').textContent = value.toISOString();
-    document.getElementById('result-epoch').textContent = value.valueOf();
+    document.getElementById('result-epoch').textContent = value.getTime();
 
 
   } catch (error) {
     document.getElementById('result').className = 'hide';
-    document.getElementById('error').className = '';
+    document.getElementById('error').className = 'show';
     document.getElementById('error-text').textContent = error;
   }
 }
 
+function initializeIsoFields() {
+  function setValue(id, value) {
+    document.getElementById(id).value = value;
+  }
+  let date = new Date();
 
+  setValue('rfc-year', date.getUTCFullYear());
+  setValue('rfc-month', date.getUTCMonth() + 1);
+  setValue('rfc-day', date.getUTCDate());
+  setValue('rfc-hour', date.getUTCHours());
+  setValue('rfc-minute', date.getUTCMinutes());
+  setValue('rfc-second', 0);
+  setValue('rfc-millisecond', 0);
+
+}
 
 //
 // initialization
@@ -159,8 +178,8 @@ function handleInputEvent(event) {
   else {
     // ignore
   }
-
 }
 
 document.addEventListener('input', handleInputEvent);
 openFirstTab();
+initializeIsoFields();

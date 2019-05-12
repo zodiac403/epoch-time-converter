@@ -33,12 +33,22 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
     <div id="rfc-tab-content" class="tab-content">
         <div class="section">
             <label>Time in RCF339</label>
-            <input type="text" id="rfc-year" class="digit-4" placeholder="yyyy">
-            <span>-</span>
-            <input type="text" id="rfc-month" class="digit-2" placeholder="mm">
-            <span>-</span>
-            <input type="text" id="rfc-day" class="digit-2" placeholder="dd">
-            <span>-</span>
+            <div>
+                <input type="number" id="rfc-year" class="digit-4" placeholder="yyyy">
+                <span>-</span>
+                <input type="number" id="rfc-month" class="digit-2" placeholder="mm">
+                <span>-</span>
+                <input type="number" id="rfc-day" class="digit-2" placeholder="dd">
+                <span>T</span>
+                <input type="number" id="rfc-hour" class="digit-2" placeholder="hh">
+                <span>:</span>
+                <input type="number" id="rfc-minute" class="digit-2" placeholder="mm">
+                <span>:</span>
+                <input type="number" id="rfc-second" class="digit-2" placeholder="ss">
+                <span>.</span>
+                <input type="number" id="rfc-millisecond" class="digit-4" placeholder="fff">
+                <span>Z</span>
+            </div>
         </div>
     </div>
 
