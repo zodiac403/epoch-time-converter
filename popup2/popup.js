@@ -54,15 +54,15 @@ function evaluateEpochToRfc() {
 
     result = convert(inputDefinition.epoch);
 
-    document.getElementById('result').className = '';
-    document.getElementById('error').className = 'hide';
-    document.getElementById('input-unit').textContent = inputDefinition.unit;
-    document.getElementById('result-iso').textContent = result;
-    document.getElementById('result-epoch').textContent = inputDefinition.epoch;
+    document.getElementById('epoch-result').className = '';
+    document.getElementById('epoch-error').className = 'hide';
+    document.getElementById('epoch-input-unit').textContent = inputDefinition.unit;
+    document.getElementById('epoch-result-iso').textContent = result;
+    document.getElementById('epoch-result-epoch').textContent = inputDefinition.epoch;
   } catch (error) {
-    document.getElementById('result').className = 'hide';
-    document.getElementById('error').className = '';
-    document.getElementById('error-text').textContent = error;
+    document.getElementById('epoch-result').className = 'hide';
+    document.getElementById('epoch-error').className = '';
+    document.getElementById('epoch-error-text').textContent = error;
   }
 }
 
@@ -132,17 +132,16 @@ function evaluateRfcToEpoch() {
     value.setMonth(month - 1, day);
     value.setUTCHours(hour, minute, second, milliseconds);
 
-    document.getElementById('result').className = 'show';
-    document.getElementById('error').className = 'hide';
-    document.getElementById('input-unit').textContent = 'ISO';
-    document.getElementById('result-iso').textContent = value.toISOString();
-    document.getElementById('result-epoch').textContent = value.getTime();
+    document.getElementById('iso-result').className = 'show';
+    document.getElementById('iso-error').className = 'hide';
+    document.getElementById('iso-result-iso').textContent = value.toISOString();
+    document.getElementById('iso-result-epoch').textContent = value.getTime();
 
 
   } catch (error) {
-    document.getElementById('result').className = 'hide';
-    document.getElementById('error').className = 'show';
-    document.getElementById('error-text').textContent = error;
+    document.getElementById('iso-result').className = 'hide';
+    document.getElementById('iso-error').className = 'show';
+    document.getElementById('iso-error-text').textContent = error;
   }
 }
 

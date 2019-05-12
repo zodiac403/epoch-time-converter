@@ -15,7 +15,7 @@
 
  .title {
    font-size: 1.25em;
-   margin-bottom: 0.25em;
+   margin: 0.25em;
  }
 
  .hide {
@@ -61,7 +61,7 @@
 
  /* Style the tab content */
  .tab-content {
-   padding: 6px 12px;
+   padding: 2px 0.8em;
    border: 1px solid #ccc;
    border-top: none;
  }
@@ -71,7 +71,7 @@
   **/
 
  div.section {
-   margin-top: 0.25em;
+   margin: 0.5em 0;
  }
 
  label {
@@ -98,4 +98,8 @@
   
   input.digit-2 {
     width: 4.5ex;
+  }
+
+  .iso-input-section span {
+    margin: 0 -2px;
   }
