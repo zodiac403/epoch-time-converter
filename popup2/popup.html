@@ -18,46 +18,53 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
     <div class="tab">
         <button class="tab-links" onclick="openTab(event, 'e2r')">Epoch2Rfc</button>
-        <button class="tab-links" onclick="openTab(event, 'r2e')">Rfc2Epoch</button>
+        <button class="tab-links" onclick="openTab(event, 'rfc')">Rfc2Epoch</button>
     </div>
 
     <!-- Tab content -->
     <div id="e2r-tab-content" class="tab-content">
-        <div class="cal-section">
+        <div class="section">
             <label>Time in epoch format</label>
-            <input type="text" id="e2r-input" placeholder="1234567890">
-        </div>
-
-        <div id="result" class="hide">
-            <div class="section">
-                <label>
-                    Result from
-                    <span id="input-unit" class="result-value"></span>
-                </label>
-
-                <div>
-                    <span>UTC</span>
-                    <span id="result-iso" class="result-value"></span>
-                </div>
-                <div>
-                    <span>Epoch (ms)</span>
-                    <span id="result-epoch" class="result-value"></span>
-                </div>
-            </div>
-        </div>
-
-        <div id="error" class="hide">
-            <div class="section">
-                <label>Result</label>
-                <div id="error-text" />
-            </div>
+            <input type="text" id="epoch-input" placeholder="1234567890">
         </div>
 
     </div>
 
-    <div id="r2e-tab-content" class="tab-content">
-        <h3>Paris</h3>
-        <p>Paris is the capital of France.</p>
+    <div id="rfc-tab-content" class="tab-content">
+        <div class="section">
+            <label>Time in RCF339</label>
+            <input type="text" id="rfc-year" class="digit-4" placeholder="yyyy">
+            <span>-</span>
+            <input type="text" id="rfc-month" class="digit-2" placeholder="mm">
+            <span>-</span>
+            <input type="text" id="rfc-day" class="digit-2" placeholder="dd">
+            <span>-</span>
+        </div>
+    </div>
+
+    <div id="result" class="hide">
+        <div class="section">
+            <label>
+                Result from
+                <span id="input-unit" class="result-value"></span>
+            </label>
+
+            <div>
+                <span>UTC</span>
+                <span id="result-iso" class="result-value"></span>
+            </div>
+            <div>
+                <span>Epoch (ms)</span>
+                <span id="result-epoch" class="result-value"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="error" class="hide">
+        <div class="section">
+            <label>Result</label>
+            <div id="error-text"></div>
+        </div>
     </div>
 
     <script src="popup.js"></script>

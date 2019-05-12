@@ -7,6 +7,11 @@
 // tab navigation
 //
 
+const initialElementId = {
+  'e2r': 'epoch-input',
+  'rfc': 'rfc-year'
+};
+
 function updateTabView(tabElement, targetName) {
   // hide all elements with class='tab-content'
   var tabContent = document.getElementsByClassName('tab-content');
@@ -27,7 +32,7 @@ function updateTabView(tabElement, targetName) {
   tabContentElement.className = tabContentElement.className.replace(' hide', '')
   tabElement.className += ' active';
 
-  document.getElementById(targetName + '-input').focus();
+  document.getElementById(initialElementId[targetName]).focus();
 }
 
 function openTab(event, targetName) {
@@ -35,16 +40,16 @@ function openTab(event, targetName) {
 }
 
 function openFirstTab() {
-  return updateTabView(document.getElementsByClassName('tab-links')[0], 'e2r');
+  return updateTabView(document.getElementsByClassName('tab-links')[1], 'rfc');
 }
 
 //
-// epoche2rfc339
+// epoch
 //
 
-function handleInputEvent(event) {
+function evaluateEpochToRfc() {
   try {
-    let value = document.getElementById('e2r-input').value;
+    let value = document.getElementById('epoch-input').value;
     let inputDefinition = getInputDefinition(value);
 
     result = convert(inputDefinition.epoch);
@@ -106,10 +111,56 @@ function convert(value) {
   return result;
 }
 
+//
+// iso
+//
+
+function evaluateRfcToEpoch() {
+  try {
+    let year = document.getElementById('rfc-year').value || 0;
+    let month = document.getElementById('rfc-month').value || 0;
+    let day = document.getElementById('rfc-day').value || 0;
+
+    let isoString = year + '-' + month + '-' + day 
+
+    let value = new Date(year + '-' + month + '-' + day);
+
+    document.getElementById('result-epoch').textContent = value.valueOf();
+
+    document.getElementById('result').className = '';
+    document.getElementById('error').className = 'hide';
+    document.getElementById('input-unit').textContent = 'ISO';
+    document.getElementById('result-iso').textContent = value.toISOString();
+    document.getElementById('result-epoch').textContent = value.valueOf();
+
+
+  } catch (error) {
+    document.getElementById('result').className = 'hide';
+    document.getElementById('error').className = '';
+    document.getElementById('error-text').textContent = error;
+  }
+}
+
+
 
 //
 // initialization
 //
+
+function handleInputEvent(event) {
+  let eventId = event.currentTarget.activeElement.id;
+
+  if (eventId.indexOf('epoch') !== -1) {
+    evaluateEpochToRfc();
+  }
+  else if (eventId.indexOf('rfc') !== -1) {
+    evaluateRfcToEpoch();
+  }
+  else {
+    // ignore
+  }
+
+}
 
 document.addEventListener('input', handleInputEvent);
 openFirstTab();

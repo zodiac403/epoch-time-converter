@@ -23,8 +23,8 @@
  }
 
  .show {
-  display: block;
-}
+   display: block;
+ }
 
 
  /**
@@ -66,25 +66,37 @@
    border-top: none;
  }
 
-  /**
-  ** epoch2rfc
+ /**
+  ** epoch
   **/
 
-  div.section {
-    margin-top: 1em;
+ div.section {
+   margin-top: 0.25em;
+ }
+
+ label {
+   font-size: .75em;
+   color: rgba(0, 0, 0, .54);
+   width: 80%;
+ }
+ input {
+  width: 80%;
+  text-align: right;
+ }
+
+ .result-value {
+   font-weight: 600;
+ }
+
+ /**
+  ** iso
+  **/
+
+  input.digit-4 {
+    width: 5ex;
   }
   
-  label {
-    font-size: .75em;
-    color: rgba(0,0,0,.54);
-    width: 80%;
-  }
-  
-  input {
-    width: 80%;
-  }
-  
-  .result-value {
-    font-weight: 600;
+  input.digit-2 {
+    width: 2.5ex;
   }
   
