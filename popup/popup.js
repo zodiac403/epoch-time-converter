@@ -16,7 +16,7 @@ function updateTabView(tabElement, targetName) {
   // hide all elements with class='tab-content'
   let tabContent = document.getElementsByClassName('tab-content');
   for (let i = 0; i < tabContent.length; i++) {
-    if(tabContent[i].className.indexOf('hide') === -1) {
+    if (tabContent[i].className.indexOf('hide') === -1) {
       tabContent[i].className += ' hide';
     }
   }
@@ -36,11 +36,12 @@ function updateTabView(tabElement, targetName) {
 }
 
 function openTab(event, targetName) {
+  console.log('open', targetName);
   return updateTabView(event.currentTarget, targetName);
 }
 
 function openFirstTab() {
-  return updateTabView(document.getElementsByClassName('tab-links')[1], 'iso');
+  return updateTabView(document.getElementsByClassName('tab-links')[0], 'epoch');
 }
 
 //
@@ -164,15 +165,20 @@ function handleInputEvent(event) {
 
   if (eventId.indexOf('epoch') !== -1) {
     evaluateEpochToIso();
-  }
-  else if (eventId.indexOf('iso') !== -1) {
+  } else if (eventId.indexOf('iso') !== -1) {
     evaluateIsoToEpoch();
-  }
-  else {
+  } else {
     // ignore
   }
 }
 
 document.addEventListener('input', handleInputEvent);
+document.getElementById("tab-link-epoch").addEventListener("click", function (event) {
+  openTab(event, 'epoch');
+});
+document.getElementById("tab-link-iso").addEventListener("click", function (event) {
+  openTab(event, 'iso');
+});
+
 openFirstTab();
 initializeIsoFields();
