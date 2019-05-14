@@ -18,8 +18,8 @@ Input in nanoseconds    1514769825789000000
 
 Create ZIP archive from local repository.
 
-```
+```sh
 npm run zip
 ```
 
-Upload archive to https://addons.mozilla.org/.
+Upload archive to [https://addons.mozilla.org/](https://addons.mozilla.org/).
