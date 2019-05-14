@@ -15,34 +15,90 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 <body>
     <div class="title">Epoch Time Converter</div>
 
-    <div class="section">
-        <label>Time in epoch format</label>
-        <input type="text" id="input" placeholder="1234567890">
+    <div class="tab">
+        <button class="tab-links" id="tab-link-epoch" data-target="tab-content-epoch">Epoch2Rfc</button>
+        <button class="tab-links" id="tab-link-iso" data-target="tab-content-iso">Rfc2Epoch</button>
     </div>
 
-    <div id="result" class="hidden">
+    <!-- Tab content -->
+    <div id="tab-content-epoch" class="tab-content">
         <div class="section">
-            <label>
-                Result from
-                <span id="input-unit" class="result-value"></span>
-            </label>
+            <label>Time in Unix epoch format</label>
+            <input type="text" id="epoch-input" placeholder="1234567890">
+        </div>
 
-            <div>
-                <span>UTC</span>
-                <span id="result-iso" class="result-value"></span>
-            </div>
-            <div>
-                <span>Epoch (ms)</span>
-                <span id="result-epoch" class="result-value"></span>
+        <div id="epoch-result" class="hide">
+            <div class="section">
+                <label>
+                    Result from
+                    <span id="epoch-input-unit" class="result-value"></span>
+                </label>
+
+                <div>
+                    <span>UTC</span>
+                    <span id="epoch-result-iso" class="result-value"></span>
+                </div>
+                <div>
+                    <span>Epoch (ms)</span>
+                    <span id="epoch-result-epoch" class="result-value"></span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="error" class="hidden">
-        <div class="section">
+        <div id="epoch-error" class="hide">
+            <div class="section">
                 <label>Result</label>
-                <div id="error-text" />
+                <div id="epoch-error-text"></div>
+            </div>
         </div>
+
+    </div>
+
+    <div id="tab-content-iso" class="tab-content">
+        <div class="section">
+            <label>Time in RFC3339</label>
+            <div class="iso-input-section">
+                <input type="number" id="iso-year" class="digit-4" placeholder="yyyy">
+                <span>-</span>
+                <input type="number" id="iso-month" class="digit-2" placeholder="mm">
+                <span>-</span>
+                <input type="number" id="iso-day" class="digit-2" placeholder="dd">
+                <span>T</span>
+                <input type="number" id="iso-hour" class="digit-2" placeholder="hh">
+                <span>:</span>
+                <input type="number" id="iso-minute" class="digit-2" placeholder="mm">
+                <span>:</span>
+                <input type="number" id="iso-second" class="digit-2" placeholder="ss">
+                <span>Z</span>
+                <div>&nbsp;</div>
+            </div>
+        </div>
+
+        <div id="iso-result" class="hide">
+            <div class="section">
+                <label>
+                    Result from
+                    <span id="iso-input-unit" class="result-value">RFC3339</span>
+                </label>
+
+                <div>
+                    <span>UTC</span>
+                    <span id="iso-result-iso" class="result-value"></span>
+                </div>
+                <div>
+                    <span>Epoch (ms)</span>
+                    <span id="iso-result-epoch" class="result-value"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="iso-error" class="hide">
+            <div class="section">
+                <label>Result</label>
+                <div id="iso-error-text"></div>
+            </div>
+        </div>
+
     </div>
 
     <script src="popup.js"></script>

@@ -3,22 +3,61 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-function handleInputEvent(event) {
+//
+// tab navigation
+//
+
+const initialElementId = {
+  'tab-content-epoch': 'epoch-input',
+  'tab-content-iso': 'iso-year'
+};
+
+function updateTabView(tabElement) {
+  // hide all elements with class='tab-content'
+  let tabContent = document.getElementsByClassName('tab-content');
+  for (let i = 0; i < tabContent.length; i++) {
+    if (tabContent[i].className.indexOf('hide') === -1) {
+      tabContent[i].className += ' hide';
+    }
+  }
+
+  // remove the class 'active' from all elements with class='tab-links' and 
+  let tabLinks = document.getElementsByClassName('tab-links');
+  for (let j = 0; j < tabLinks.length; j++) {
+    tabLinks[j].className = tabLinks[j].className.replace(' active', '');
+  }
+
+  // Show the current tab, and add an 'active' class to the button that opened the tab
+  let tabContentElement = document.getElementById(tabElement.dataset.target);
+  tabContentElement.className = tabContentElement.className.replace(' hide', '')
+  tabElement.className += ' active';
+
+  document.getElementById(initialElementId[tabElement.dataset.target]).focus();
+}
+
+function openFirstTab() {
+  return updateTabView(document.getElementsByClassName('tab-links')[0]);
+}
+
+//
+// epoch
+//
+
+function evaluateEpochToIso() {
   try {
-    let value = document.getElementById('input').value;
+    let value = document.getElementById('epoch-input').value;
     let inputDefinition = getInputDefinition(value);
+    let result = convert(inputDefinition.epoch);
 
-    result = convert(inputDefinition.epoch);
-
-    document.getElementById('result').className = '';
-    document.getElementById('error').className = 'hidden';
-    document.getElementById('input-unit').textContent = inputDefinition.unit;
-    document.getElementById('result-iso').textContent = result;
-    document.getElementById('result-epoch').textContent = inputDefinition.epoch;
+    document.getElementById('epoch-result').className = '';
+    document.getElementById('epoch-error').className = 'hide';
+    document.getElementById('epoch-input-unit').textContent = inputDefinition.unit;
+    document.getElementById('epoch-result-iso').textContent = result;
+    document.getElementById('epoch-result-epoch').textContent = inputDefinition.epoch;
   } catch (error) {
-    document.getElementById('result').className = 'hidden';
-    document.getElementById('error').className = '';
-    document.getElementById('error-text').textContent = error;
+    document.getElementById('epoch-result').className = 'hide';
+    document.getElementById('epoch-error').className = '';
+    document.getElementById('epoch-error-text').textContent = error;
   }
 }
 
@@ -56,7 +95,6 @@ function getInputDefinition(value) {
 
 function convert(value) {
   let result;
-
   let date = new Date(Number(value));
 
   if (!date.getTime()) {
@@ -67,5 +105,71 @@ function convert(value) {
   return result;
 }
 
+//
+// iso
+//
+
+function evaluateIsoToEpoch() {
+  try {
+    let year = document.getElementById('iso-year').value || 1970;
+    let month = document.getElementById('iso-month').value || 1;
+    let day = document.getElementById('iso-day').value || 1;
+    let hour = document.getElementById('iso-hour').value || 0;
+    let minute = document.getElementById('iso-minute').value || 0;
+    let second = document.getElementById('iso-second').value || 0;
+    let milliseconds = 0;
+
+    let value = new Date();
+    value.setUTCFullYear(year);
+    value.setMonth(month - 1, day);
+    value.setUTCHours(hour, minute, second, milliseconds);
+
+    document.getElementById('iso-result').className = 'show';
+    document.getElementById('iso-error').className = 'hide';
+    document.getElementById('iso-result-iso').textContent = value.toISOString();
+    document.getElementById('iso-result-epoch').textContent = value.getTime();
+  } catch (error) {
+    document.getElementById('iso-result').className = 'hide';
+    document.getElementById('iso-error').className = 'show';
+    document.getElementById('iso-error-text').textContent = error;
+  }
+}
+
+function initializeIsoFields() {
+  function setValue(id, value) {
+    document.getElementById(id).value = value;
+  }
+
+  let date = new Date();
+  setValue('iso-year', date.getUTCFullYear());
+  setValue('iso-month', date.getUTCMonth() + 1);
+  setValue('iso-day', date.getUTCDate());
+  setValue('iso-hour', date.getUTCHours());
+  setValue('iso-minute', date.getUTCMinutes());
+  setValue('iso-second', 0);
+}
+
+//
+// initialization
+//
+
+function handleInputEvent(event) {
+  let eventId = event.currentTarget.activeElement.id;
+
+  if (eventId.indexOf('epoch') !== -1) {
+    evaluateEpochToIso();
+  } else if (eventId.indexOf('iso') !== -1) {
+    evaluateIsoToEpoch();
+  } else {
+    // ignore
+  }
+}
+
 document.addEventListener('input', handleInputEvent);
-document.getElementById('input').focus();
+['epoch', 'iso'].forEach(function(key) {
+  document.getElementById('tab-link-' + key).addEventListener('click', function (event) {
+    updateTabView(event.currentTarget);
+  });  
+});
+openFirstTab();
+initializeIsoFields();
