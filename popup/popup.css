@@ -103,3 +103,7 @@ input.digit-2 {
 .iso-input-section span {
   margin: 0 -2px;
 }
+
+.iso-input-section div {
+  width: 50ex;
+}
