@@ -62,6 +62,10 @@ function evaluateEpochToIso() {
 }
 
 function getInputDefinition(value) {
+  function sanitize(value) { 
+    return value.replace('/', ' ')
+  }
+
   function createInputDefinition(milliseconds, unit, precision) {
     return {
       epoch: milliseconds,
@@ -71,10 +75,11 @@ function getInputDefinition(value) {
   }
 
   function isEpoch(value) {
-    return value.match(/^[0-9]+$/);
+    return value.match(/^[0-9]+$/)
   }
 
   let input = {};
+  let sanitizedValue = sanitize(value)
 
   if (isEpoch(value)) {
     if (value.length <= 11) {
@@ -86,6 +91,8 @@ function getInputDefinition(value) {
     } else {
       throw Error('Unknown format: number with ' + value.length + ' digits.');
     }
+  } else if (Date.parse(sanitizedValue)) {
+    input = createInputDefinition(Date.parse(sanitizedValue), 'string', 'epoch')
   } else {
     throw Error('Unknown format: ' + value + '.');
   }
@@ -166,10 +173,10 @@ function handleInputEvent(event) {
 }
 
 document.addEventListener('input', handleInputEvent);
-['epoch', 'iso'].forEach(function(key) {
+['epoch', 'iso'].forEach(function (key) {
   document.getElementById('tab-link-' + key).addEventListener('click', function (event) {
     updateTabView(event.currentTarget);
-  });  
+  });
 });
 openFirstTab();
 initializeIsoFields();
