@@ -93,11 +93,11 @@ input {
  **/
 
 input.digit-4 {
-  width: 7.5ex;
+  width: 6.5ex;
 }
 
 input.digit-2 {
-  width: 5ex;
+  width: 4ex;
 }
 
 .iso-input-section span {
