@@ -8,8 +8,12 @@
   "author": "zodiac403 <zodiac403@gmx.de>",
 
   "browser_action": {
-    "default_icon": "icon/icon-32.png",
     "default_title": "Epoch time converter",
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "theme_icons": [{
+      "dark": "icon/icon-32.png",
+      "light": "icon/icon-32-light.png",
+      "size": 32
+    }]
   }
 }
