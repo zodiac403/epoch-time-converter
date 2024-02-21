@@ -1,6 +1,6 @@
 {
   "name": "epoch-time-converter",
-  "version": "0.9.0",
+  "version": "1.1.0",
   "description": "NPM package for build chain.",
   "main": "popup/popup.html",
   "directories": {
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "zip": "zip epoch-time-converter.zip icon/*.png manifest.json popup/*"
+    "zip-ff": "export ARCHIVE=epoch-time-converter-ff.zip && rm -f $ARCHIVE && zip $ARCHIVE icon/*.png popup/* && zip -u $ARCHIVE -j target-firefox/manifest.json",
+    "zip-chrome": "export ARCHIVE=epoch-time-converter-chrome.zip && rm -f $ARCHIVE && zip $ARCHIVE icon/*.png popup/* && zip -u $ARCHIVE -j target-chrome/manifest.json"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,6 @@
   },
   "homepage": "https://github.com/zodiac403/epoch-time-converter#readme",
   "devDependencies": {
-    "prettier": "^1.13.3"
+    "prettier": "^3.2.5"
   }
 }
